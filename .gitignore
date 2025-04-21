@@ -1,0 +1,30 @@
+# Python 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 发布包
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+
+# 虚拟环境
+.fs_auto_sim_env/
+venv/
+env/
+ENV/
+
+# 日志和临时文件
+*.log
+*.swp
+*.tmp
+.DS_Store
+
+# IDE 配置
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace 
