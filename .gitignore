@@ -1,0 +1,35 @@
+# 编译和临时文件
+__pycache__/
+*.py[cod]
+*.class
+*.so
+swb_env/
+.fs_auto_sim_env/
+# Sentaurus临时文件
+*.tdr
+*.plt
+*.xml
+*.job
+*.sta
+*.out
+*.log
+*.err
+*.cmd~
+*.par
+*.bnd
+gsummary.txt
+gsub.err
+pp*.*
+.history
+.database
+.status
+gtree.dat*
+gexec.cmd
+gvars.dat
+gcomments.dat
+gscens.dat
+cmlog.txt
+*_local.err
+# 实验数据
+n*/
+auto_sim.log
