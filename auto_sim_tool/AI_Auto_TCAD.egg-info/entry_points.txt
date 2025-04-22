@@ -1,0 +1,4 @@
+[console_scripts]
+fs-sim-console = fs_auto_sim.cli:console
+fs-sim-install = fs_auto_sim.cli:install
+fs-sim-ui = fs_auto_sim.cli:ui

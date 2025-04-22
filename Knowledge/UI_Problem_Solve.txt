@@ -1,0 +1,25 @@
+# UI 调试与优化经验总结
+
+以下是从最初创建图形界面到当前无明显Bug阶段的重要经验：
+
+1. 使用信号槽替换低效线程调用：
+   - 在 `ConsoleOutput` 中定义 `text_signal = Signal(str)` 并连接至 `_append_text`，替换原 `QMetaObject.invokeMethod` 写法，确保日志更新线程安全。
+
+2. 浏览目录对话框改造：
+   - 使用 `QFileDialog` 的 `exec_()` 模式自定义对话框，避免默认 `getExistingDirectory` 导致 UI 崩溃。
+
+3. 模拟仿真进度调度优化：
+   - 最初使用线程+`time.sleep` 方式模拟容易与 UI 冲突，改用 `QTimer.singleShot` 驱动单步调度，确保在Qt主线运行，杜绝跨线程UI更新崩溃。
+
+4. 停止仿真逻辑简化：
+   - `stop_simulation` 仅更新 `is_simulation_running` 标志并恢复按钮状态，无需额外阻断或断开信号，避免多次定时器操作导致的并发问题。
+
+5. 界面状态与异常处理：
+   - 在关键操作添加 `try/except` 捕获并在日志区打印异常信息，保证出错时不会直接崩溃。
+   - 在 `closeEvent` 中检查 `is_simulation_running`，提示确认后再退出，避免未结束的仿真线程引起资源冲突。
+
+6. UI加载与兼容性：
+   - 兼容不同版本 PySimpleGUI/PySide2，统一使用 `ConsoleOutput` 和 `QTimer`，抛弃多余的版本判断。
+   - 设置 `QT_AUTO_SCREEN_SCALE_FACTOR` 等环境变量，避免高DPI模式警告。
+
+以上经验确保了从 UI 启动、参数加载、模拟仿真到停止流程的稳定性，为下一步引入真实 DeepSeek 全自动优化打下了基础。 

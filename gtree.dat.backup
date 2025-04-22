@@ -1,0 +1,443 @@
+# Copyright (C) 1994-2023 Synopsys Inc.
+# swbtree vV-2024.03, saved by swb
+
+# --- simulation flow
+FS_IGBT sde "" {}
+FS_IGBT Xmax "6" {6 6.5 7.0 6.8 6.2 7.2 7.5 7.8 8.0} V
+FS_IGBT Wgate "10" {1.8 1.7 2.0} V
+FS_IGBT Wnplus "0.5" {0.5} V
+FS_IGBT Wpplus "1.5" {1.5 1.4} V
+FS_IGBT Wemitter "1.8" {1.8} V
+FS_IGBT Ymax "100" {100} V
+FS_IGBT Ygate "5" {5 5.5 5.8 5.6 5.7} V
+FS_IGBT Ypplus "0.5" {0.5} V
+FS_IGBT Ynplus "0.5" {0.5} V
+FS_IGBT Ypbase "3" {3 3.2 3.3 3.5 3.8 4.0 3.4 3.6 4.2} V
+FS_IGBT Hnbuffer "4" {4 4.5 5.0} V
+FS_IGBT Hcollector "0.5" {0.5} V
+FS_IGBT Ndrift "5e13" {5e13 48000000000000.0 45000000000000.0 40000000000000.0 38000000000000.0 35000000000000.0 36000000000000.0 30000000000000.0 28000000000000.0 25000000000000.0 20000000000000.0 18000000000000.0 16000000000000.0} V
+FS_IGBT Pbase "2.5e17" {2.5e17 2.4e+17 2.2e+17 2e+17 1.8e+17 1.6e+17 1.4e+17 1.3e+17 1.25e+17 1.1e+17 2.3e+17 2.1e+17 1.9e+17} V
+FS_IGBT Pplus "1e19" {1e19} V
+FS_IGBT Nplus "1e19" {1e19} V
+FS_IGBT Nbuffer "5e12" {5e15} V
+FS_IGBT Pcollector "1e17" {1e+17 8e+16} V
+FS_IGBT Tox_sidewall "0.1" {0.092 0.1 0.11 0.105 0.09 0.08 0.07 0.06 0.085} V
+FS_IGBT Tox_bottom "0.12" {0.12 0.115} R
+BV sdevice "" {}
+IcVc sdevice "" {}
+IcVg sdevice "" {}
+# --- variables
+# --- scenarios and parameter specs
+scenario default Xmax ""
+scenario default Wgate ""
+scenario default Wnplus ""
+scenario default Wpplus ""
+scenario default Wemitter ""
+scenario default Ymax ""
+scenario default Ygate ""
+scenario default Ypplus ""
+scenario default Ynplus ""
+scenario default Ypbase ""
+scenario default Hnbuffer ""
+scenario default Hcollector ""
+scenario default Ndrift ""
+scenario default Pbase ""
+scenario default Pplus ""
+scenario default Nplus ""
+scenario default Nbuffer ""
+scenario default Pcollector ""
+scenario default Tox_sidewall ""
+scenario default Tox_bottom ""
+# --- simulation tree
+0 26 0 {} {default} 0
+1 70 26 {6} {default} 0
+2 31 70 {1.8} {default} 0
+3 49 31 {0.5} {default} 0
+4 50 49 {1.5} {default} 0
+5 51 50 {1.8} {default} 0
+6 52 51 {100} {default} 0
+7 53 52 {5} {default} 0
+8 54 53 {0.5} {default} 0
+9 55 54 {0.5} {default} 0
+10 56 55 {3} {default} 0
+11 57 56 {4} {default} 0
+12 58 57 {0.5} {default} 0
+13 59 58 {5e13} {default} 0
+14 60 59 {2.5e17} {default} 0
+15 61 60 {1e19} {default} 0
+16 62 61 {1e19} {default} 0
+17 63 62 {5e15} {default} 0
+18 64 63 {1e+17} {default} 0
+19 65 64 {0.092} {default} 0
+20 66 65 {0.12} {default} 0
+21 67 66 {} {default} 0
+22 68 67 {} {default} 0
+23 69 68 {} {default} 0
+1 76 26 {6.5} {default} 0
+2 77 76 {1.8} {default} 0
+3 78 77 {0.5} {default} 0
+4 79 78 {1.5} {default} 0
+5 80 79 {1.8} {default} 0
+6 81 80 {100} {default} 0
+7 82 81 {5} {default} 0
+8 83 82 {0.5} {default} 0
+9 84 83 {0.5} {default} 0
+10 85 84 {3.2} {default} 0
+11 86 85 {4} {default} 0
+12 87 86 {0.5} {default} 0
+13 88 87 {48000000000000.0} {default} 0
+14 89 88 {2.4e+17} {default} 0
+15 90 89 {1e19} {default} 0
+16 91 90 {1e19} {default} 0
+17 92 91 {5e15} {default} 0
+18 93 92 {1e+17} {default} 0
+19 94 93 {0.11} {default} 0
+20 95 94 {0.12} {default} 0
+21 96 95 {} {default} 0
+22 97 96 {} {default} 0
+23 98 97 {} {default} 0
+10 212 84 {3.4} {default} 0
+11 213 212 {4} {default} 0
+12 214 213 {0.5} {default} 0
+13 215 214 {40000000000000.0} {default} 0
+14 216 215 {2.2e+17} {default} 0
+15 217 216 {1e19} {default} 0
+16 218 217 {1e19} {default} 0
+17 219 218 {5e15} {default} 0
+18 220 219 {1e+17} {default} 0
+19 221 220 {0.1} {default} 0
+20 222 221 {0.12} {default} 0
+21 223 222 {} {default} 0
+22 224 223 {} {default} 0
+23 225 224 {} {default} 0
+7 122 81 {5.8} {default} 0
+8 123 122 {0.5} {default} 0
+9 124 123 {0.5} {default} 0
+10 125 124 {3.5} {default} 0
+11 126 125 {4} {default} 0
+12 127 126 {0.5} {default} 0
+13 128 127 {40000000000000.0} {default} 0
+14 129 128 {2e+17} {default} 0
+15 130 129 {1e19} {default} 0
+16 131 130 {1e19} {default} 0
+17 132 131 {5e15} {default} 0
+18 133 132 {1e+17} {default} 0
+19 134 133 {0.1} {default} 0
+20 135 134 {0.115} {default} 0
+21 136 135 {} {default} 0
+22 137 136 {} {default} 0
+23 138 137 {} {default} 0
+2 379 76 {1.7} {default} 0
+3 380 379 {0.5} {default} 0
+4 381 380 {1.4} {default} 0
+5 382 381 {1.8} {default} 0
+6 383 382 {100} {default} 0
+7 384 383 {5} {default} 0
+8 385 384 {0.5} {default} 0
+9 386 385 {0.5} {default} 0
+10 387 386 {3.2} {default} 0
+11 388 387 {4} {default} 0
+12 389 388 {0.5} {default} 0
+13 390 389 {45000000000000.0} {default} 0
+14 391 390 {2.3e+17} {default} 0
+15 392 391 {1e19} {default} 0
+16 393 392 {1e19} {default} 0
+17 394 393 {5e15} {default} 0
+18 395 394 {1e+17} {default} 0
+19 396 395 {0.11} {default} 0
+20 397 396 {0.12} {default} 0
+21 398 397 {} {default} 0
+22 399 398 {} {default} 0
+23 400 399 {} {default} 0
+1 99 26 {7.0} {default} 0
+2 100 99 {1.8} {default} 0
+3 101 100 {0.5} {default} 0
+4 102 101 {1.5} {default} 0
+5 103 102 {1.8} {default} 0
+6 104 103 {100} {default} 0
+7 105 104 {5.5} {default} 0
+8 106 105 {0.5} {default} 0
+9 107 106 {0.5} {default} 0
+10 108 107 {3.3} {default} 0
+11 109 108 {4} {default} 0
+12 110 109 {0.5} {default} 0
+13 111 110 {45000000000000.0} {default} 0
+14 112 111 {2.2e+17} {default} 0
+15 113 112 {1e19} {default} 0
+16 114 113 {1e19} {default} 0
+17 115 114 {5e15} {default} 0
+18 116 115 {1e+17} {default} 0
+19 117 116 {0.105} {default} 0
+20 118 117 {0.115} {default} 0
+21 119 118 {} {default} 0
+22 120 119 {} {default} 0
+23 121 120 {} {default} 0
+7 226 104 {5} {default} 0
+8 227 226 {0.5} {default} 0
+9 228 227 {0.5} {default} 0
+10 229 228 {3.6} {default} 0
+11 230 229 {4} {default} 0
+12 231 230 {0.5} {default} 0
+13 232 231 {36000000000000.0} {default} 0
+14 233 232 {2e+17} {default} 0
+15 234 233 {1e19} {default} 0
+16 235 234 {1e19} {default} 0
+17 236 235 {5e15} {default} 0
+18 237 236 {1e+17} {default} 0
+19 238 237 {0.09} {default} 0
+20 239 238 {0.12} {default} 0
+21 240 239 {} {default} 0
+22 241 240 {} {default} 0
+23 242 241 {} {default} 0
+2 162 99 {1.7} {default} 0
+3 163 162 {0.5} {default} 0
+4 164 163 {1.4} {default} 0
+5 165 164 {1.8} {default} 0
+6 166 165 {100} {default} 0
+7 167 166 {5.6} {default} 0
+8 168 167 {0.5} {default} 0
+9 169 168 {0.5} {default} 0
+10 170 169 {4.0} {default} 0
+11 171 170 {4.5} {default} 0
+12 172 171 {0.5} {default} 0
+13 173 172 {35000000000000.0} {default} 0
+14 174 173 {1.6e+17} {default} 0
+15 175 174 {1e19} {default} 0
+16 176 175 {1e19} {default} 0
+17 177 176 {5e15} {default} 0
+18 178 177 {1e+17} {default} 0
+19 179 178 {0.08} {default} 0
+20 180 179 {0.115} {default} 0
+21 181 180 {} {default} 0
+22 182 181 {} {default} 0
+23 183 182 {} {default} 0
+7 401 166 {5} {default} 0
+8 402 401 {0.5} {default} 0
+9 403 402 {0.5} {default} 0
+10 404 403 {3.5} {default} 0
+11 405 404 {5.0} {default} 0
+12 406 405 {0.5} {default} 0
+13 407 406 {40000000000000.0} {default} 0
+14 408 407 {2.1e+17} {default} 0
+15 409 408 {1e19} {default} 0
+16 410 409 {1e19} {default} 0
+17 411 410 {5e15} {default} 0
+18 412 411 {1e+17} {default} 0
+19 413 412 {0.1} {default} 0
+20 414 413 {0.12} {default} 0
+21 415 414 {} {default} 0
+22 416 415 {} {default} 0
+23 417 416 {} {default} 0
+10 418 403 {3.8} {default} 0
+11 419 418 {5.0} {default} 0
+12 420 419 {0.5} {default} 0
+13 421 420 {36000000000000.0} {default} 0
+14 422 421 {1.9e+17} {default} 0
+15 423 422 {1e19} {default} 0
+16 424 423 {1e19} {default} 0
+17 425 424 {5e15} {default} 0
+18 426 425 {1e+17} {default} 0
+19 427 426 {0.09} {default} 0
+20 428 427 {0.12} {default} 0
+21 429 428 {} {default} 0
+22 430 429 {} {default} 0
+23 431 430 {} {default} 0
+2 289 99 {2.0} {default} 0
+3 290 289 {0.5} {default} 0
+4 291 290 {1.5} {default} 0
+5 292 291 {1.8} {default} 0
+6 293 292 {100} {default} 0
+7 294 293 {5} {default} 0
+8 295 294 {0.5} {default} 0
+9 296 295 {0.5} {default} 0
+10 297 296 {3.8} {default} 0
+11 298 297 {4.5} {default} 0
+12 299 298 {0.5} {default} 0
+13 300 299 {25000000000000.0} {default} 0
+14 301 300 {1.4e+17} {default} 0
+15 302 301 {1e19} {default} 0
+16 303 302 {1e19} {default} 0
+17 304 303 {5e15} {default} 0
+18 305 304 {1e+17} {default} 0
+19 306 305 {0.06} {default} 0
+20 307 306 {0.12} {default} 0
+21 308 307 {} {default} 0
+22 309 308 {} {default} 0
+23 310 309 {} {default} 0
+1 139 26 {6.8} {default} 0
+2 140 139 {1.7} {default} 0
+3 141 140 {0.5} {default} 0
+4 142 141 {1.5} {default} 0
+5 143 142 {1.8} {default} 0
+6 144 143 {100} {default} 0
+7 145 144 {5.6} {default} 0
+8 146 145 {0.5} {default} 0
+9 147 146 {0.5} {default} 0
+10 148 147 {3.8} {default} 0
+11 149 148 {4} {default} 0
+12 150 149 {0.5} {default} 0
+13 151 150 {38000000000000.0} {default} 0
+14 152 151 {1.8e+17} {default} 0
+15 153 152 {1e19} {default} 0
+16 154 153 {1e19} {default} 0
+17 155 154 {5e15} {default} 0
+18 156 155 {1e+17} {default} 0
+19 157 156 {0.09} {default} 0
+20 158 157 {0.115} {default} 0
+21 159 158 {} {default} 0
+22 160 159 {} {default} 0
+23 161 160 {} {default} 0
+1 189 26 {6.2} {default} 0
+2 190 189 {1.8} {default} 0
+3 191 190 {0.5} {default} 0
+4 192 191 {1.5} {default} 0
+5 193 192 {1.8} {default} 0
+6 194 193 {100} {default} 0
+7 195 194 {5} {default} 0
+8 196 195 {0.5} {default} 0
+9 197 196 {0.5} {default} 0
+10 198 197 {3.2} {default} 0
+11 199 198 {4} {default} 0
+12 200 199 {0.5} {default} 0
+13 201 200 {45000000000000.0} {default} 0
+14 202 201 {2.4e+17} {default} 0
+15 203 202 {1e19} {default} 0
+16 204 203 {1e19} {default} 0
+17 205 204 {5e15} {default} 0
+18 206 205 {1e+17} {default} 0
+19 207 206 {0.11} {default} 0
+20 208 207 {0.12} {default} 0
+21 209 208 {} {default} 0
+22 210 209 {} {default} 0
+23 211 210 {} {default} 0
+1 243 26 {7.2} {default} 0
+2 244 243 {1.8} {default} 0
+3 245 244 {0.5} {default} 0
+4 246 245 {1.5} {default} 0
+5 247 246 {1.8} {default} 0
+6 248 247 {100} {default} 0
+7 249 248 {5} {default} 0
+8 250 249 {0.5} {default} 0
+9 251 250 {0.5} {default} 0
+10 252 251 {3.8} {default} 0
+11 253 252 {4} {default} 0
+12 254 253 {0.5} {default} 0
+13 255 254 {30000000000000.0} {default} 0
+14 256 255 {1.8e+17} {default} 0
+15 257 256 {1e19} {default} 0
+16 258 257 {1e19} {default} 0
+17 259 258 {5e15} {default} 0
+18 260 259 {1e+17} {default} 0
+19 261 260 {0.08} {default} 0
+20 262 261 {0.12} {default} 0
+21 263 262 {} {default} 0
+22 264 263 {} {default} 0
+23 265 264 {} {default} 0
+1 266 26 {7.5} {default} 0
+2 267 266 {2.0} {default} 0
+3 268 267 {0.5} {default} 0
+4 269 268 {1.5} {default} 0
+5 270 269 {1.8} {default} 0
+6 271 270 {100} {default} 0
+7 272 271 {5} {default} 0
+8 273 272 {0.5} {default} 0
+9 274 273 {0.5} {default} 0
+10 275 274 {4.0} {default} 0
+11 276 275 {4.5} {default} 0
+12 277 276 {0.5} {default} 0
+13 278 277 {28000000000000.0} {default} 0
+14 279 278 {1.6e+17} {default} 0
+15 280 279 {1e19} {default} 0
+16 281 280 {1e19} {default} 0
+17 282 281 {5e15} {default} 0
+18 283 282 {1e+17} {default} 0
+19 284 283 {0.07} {default} 0
+20 285 284 {0.12} {default} 0
+21 286 285 {} {default} 0
+22 287 286 {} {default} 0
+23 288 287 {} {default} 0
+7 311 271 {5.5} {default} 0
+8 312 311 {0.5} {default} 0
+9 313 312 {0.5} {default} 0
+10 314 313 {4.0} {default} 0
+11 315 314 {5.0} {default} 0
+12 316 315 {0.5} {default} 0
+13 317 316 {20000000000000.0} {default} 0
+14 318 317 {1.3e+17} {default} 0
+15 319 318 {1e19} {default} 0
+16 320 319 {1e19} {default} 0
+17 321 320 {5e15} {default} 0
+18 322 321 {8e+16} {default} 0
+19 323 322 {0.08} {default} 0
+20 324 323 {0.12} {default} 0
+21 325 324 {} {default} 0
+22 326 325 {} {default} 0
+23 327 326 {} {default} 0
+2 432 266 {1.7} {default} 0
+3 433 432 {0.5} {default} 0
+4 434 433 {1.4} {default} 0
+5 435 434 {1.8} {default} 0
+6 436 435 {100} {default} 0
+7 437 436 {5} {default} 0
+8 438 437 {0.5} {default} 0
+9 439 438 {0.5} {default} 0
+10 440 439 {3.5} {default} 0
+11 441 440 {5.0} {default} 0
+12 442 441 {0.5} {default} 0
+13 443 442 {30000000000000.0} {default} 0
+14 444 443 {1.8e+17} {default} 0
+15 445 444 {1e19} {default} 0
+16 446 445 {1e19} {default} 0
+17 447 446 {5e15} {default} 0
+18 448 447 {1e+17} {default} 0
+19 449 448 {0.08} {default} 0
+20 450 449 {0.12} {default} 0
+21 451 450 {} {default} 0
+22 452 451 {} {default} 0
+23 453 452 {} {default} 0
+1 328 26 {7.8} {default} 0
+2 329 328 {2.0} {default} 0
+3 330 329 {0.5} {default} 0
+4 331 330 {1.5} {default} 0
+5 332 331 {1.8} {default} 0
+6 333 332 {100} {default} 0
+7 334 333 {5.7} {default} 0
+8 335 334 {0.5} {default} 0
+9 336 335 {0.5} {default} 0
+10 337 336 {4.2} {default} 0
+11 338 337 {5.0} {default} 0
+12 339 338 {0.5} {default} 0
+13 340 339 {18000000000000.0} {default} 0
+14 341 340 {1.25e+17} {default} 0
+15 342 341 {1e19} {default} 0
+16 343 342 {1e19} {default} 0
+17 344 343 {5e15} {default} 0
+18 345 344 {8e+16} {default} 0
+19 346 345 {0.085} {default} 0
+20 347 346 {0.12} {default} 0
+21 348 347 {} {default} 0
+22 349 348 {} {default} 0
+23 350 349 {} {default} 0
+1 351 26 {8.0} {default} 0
+2 352 351 {2.0} {default} 0
+3 353 352 {0.5} {default} 0
+4 354 353 {1.5} {default} 0
+5 355 354 {1.8} {default} 0
+6 356 355 {100} {default} 0
+7 357 356 {5.8} {default} 0
+8 358 357 {0.5} {default} 0
+9 359 358 {0.5} {default} 0
+10 360 359 {4.0} {default} 0
+11 361 360 {5.0} {default} 0
+12 362 361 {0.5} {default} 0
+13 363 362 {16000000000000.0} {default} 0
+14 364 363 {1.1e+17} {default} 0
+15 365 364 {1e19} {default} 0
+16 366 365 {1e19} {default} 0
+17 367 366 {5e15} {default} 0
+18 368 367 {8e+16} {default} 0
+19 369 368 {0.09} {default} 0
+20 370 369 {0.12} {default} 0
+21 371 370 {} {default} 0
+22 372 371 {} {default} 0
+23 373 372 {} {default} 0

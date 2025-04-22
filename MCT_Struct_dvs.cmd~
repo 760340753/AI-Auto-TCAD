@@ -1,0 +1,185 @@
+
+(sde:set-process-up-direction "+z")
+;Structure Parameter
+
+(define Wg       @Wg@)
+(define Wcp      @Wcp@)
+(define Wcs      @Wcs@)
+(define Wtot     @Wtot@)
+(define Tdrift   @Tdrift@)
+(define TPa      @TPa@)
+(define TPb      @TPb@)
+(define TNb      @TNb@)
+(define TNa      @TNa@)
+(define TPc      @TPc@)
+(define Tox      @Tox@)
+(define Tpoly    @Tpoly@)
+(define Tcathode @Tcathode@)
+(define Zeropoint @Zeropoint@)
+
+;Doping Parameter
+(define Ndrift   @Ndrift@)
+(define Npoly    @Npoly@)
+(define Pa       @Pa@)
+(define Pb       @Pb@)
+(define Nb       @Nb@)
+(define Na       @Na@)
+(define Pc       @Pc@)
+
+;Meshing Parameter
+(define x        @x@)
+(define Length   @Length@)
+
+;----------------------------------------
+; Build geometry
+;----------------------------------------
+(sdegeo:create-rectangle
+  (position Zeropoint 0 0)
+  (position Wtot      Tdrift 0)
+  "Silicon" "Sub")
+
+(sdegeo:create-rectangle
+  (position Zeropoint 0 0)
+  (position Wg        Tox   0)
+  "SiO2" "Gox")
+
+;----------------------------------------
+; Define electrodes
+;----------------------------------------
+(sdegeo:define-contact-set "Anode" 4 (color:rgb 1 0 0) "##")
+(sdegeo:define-2d-contact
+  (find-edge-id (position (/ Wtot 2) Tdrift 0))
+  "Anode")
+
+(sdegeo:define-contact-set "Gate" 4 (color:rgb 1 0 0) "##")
+(define GateCon
+  (sdegeo:create-rectangle
+    (position Zeropoint Tox 0)
+    (position Wg        Tpoly 0)
+    "PolySi" "R.GateCon"))
+(sdegeo:set-current-contact-set "Gate")
+(sdegeo:set-contact-boundary-edges GateCon)
+(sdegeo:delete-region GateCon)
+
+(sdegeo:define-contact-set "Cathode" 4 (color:rgb 1 0 0) "##")
+(define CathodeCon
+  (sdegeo:create-rectangle
+    (position (+ Wg Wcp) 0 0)
+    (position Wtot      Tcathode 0)
+    "Aluminum" "R.CathodeCon"))
+(sdegeo:set-current-contact-set "Cathode")
+(sdegeo:set-contact-boundary-edges CathodeCon)
+(sdegeo:delete-region CathodeCon)
+
+;----------------------------------------
+; Constant Doping
+;----------------------------------------
+(sdedr:define-refeval-window "RD1.Ndrift" "Rectangle"
+  (position Zeropoint 0 0)
+  (position Wtot      Tdrift 0))
+(sdedr:define-constant-profile "RD2.Ndrift"
+  "PhosphorusActiveConcentration" Ndrift)
+(sdedr:define-constant-profile-placement
+  "RD3.Ndrift" "RD2.Ndrift" "RD1.Ndrift")
+
+(sdedr:define-refeval-window "RD1.Poly" "Rectangle"
+  (position Zeropoint Tox 0)
+  (position Wg        Tpoly 0))
+(sdedr:define-constant-profile "RD2.Poly"
+  "PhosphorusActiveConcentration" Npoly)
+(sdedr:define-constant-profile-placement
+  "RD3.Poly" "RD2.Poly" "RD1.Poly")
+
+;----------------------------------------
+; Gaussian Doping
+;----------------------------------------
+;; p+ base
+(sdedr:define-refeval-window "RW.Pb" "Line"
+  (position Wg 0 0)
+  (position Wtot 0 0))
+(sdedr:define-gaussian-profile "GP.Pb" "BoronActiveConcentration"
+  "PeakPos" 0 "PeakVal" Pb
+  "ValueAtDepth" Ndrift "Depth" TPb
+  "Gauss" "Factor" 0.8)
+(sdedr:define-analytical-profile-placement
+  "Impl.Pb" "GP.Pb" "RW.Pb" "Positive" "NoReplace" "Eval")
+
+;; n+ emitter
+(sdedr:define-refeval-window "RW.Nb" "Line"
+  (position Wg       0 0)
+  (position (- Wtot Wcs) 0 0))
+(sdedr:define-gaussian-profile "GP.Nb" "PhosphorusActiveConcentration"
+  "PeakPos" 0 "PeakVal" Nb
+  "ValueAtDepth" Ndrift "Depth" TNb
+  "Gauss" "Factor" 0.8)
+(sdedr:define-analytical-profile-placement
+  "Impl.Nb" "GP.Nb" "RW.Nb" "Positive" "NoReplace" "Eval")
+
+;; (Removed Pc implant near cathode)
+
+;; p+ collector
+(sdedr:define-refeval-window "RW.Pa" "Line"
+  (position Zeropoint Tdrift 0)
+  (position Wtot      Tdrift 0))
+(sdedr:define-gaussian-profile "GP.Pa" "BoronActiveConcentration"
+  "PeakPos" 0 "PeakVal" Pa
+  "ValueAtDepth" Ndrift "Depth" TPa
+  "Gauss" "Factor" 0.8)
+(sdedr:define-analytical-profile-placement
+  "Impl.Pa" "GP.Pa" "RW.Pa" "Negative" "NoReplace" "Eval")
+
+;; n+ buffer
+(sdedr:define-refeval-window "RW.Na" "Line"
+  (position Zeropoint Tdrift 0)
+  (position Wtot      Tdrift 0))
+(sdedr:define-gaussian-profile "GP.Na" "PhosphorusActiveConcentration"
+  "PeakPos" 0 "PeakVal" Na
+  "ValueAtDepth" Ndrift "Depth" TNa
+  "Gauss" "Factor" 0.8)
+(sdedr:define-analytical-profile-placement
+  "Impl.Na" "GP.Na" "RW.Na" "Negative" "NoReplace" "Eval")
+
+;----------------------------------------
+; Mesh
+;----------------------------------------
+(sdedr:define-refeval-window "RM1.Global" "Rectangle"
+  (position 0       0      0)
+  (position Wtot    Tdrift 0))
+(sdedr:define-refinement-size "RM2.Global"
+  10 10 0.03 0.03)
+(sdedr:define-refinement-function "RM2.Global"
+  "DopingConcentration" "MaxTransDiff" 1.0)
+(sdedr:define-refinement-placement
+  "RM3.Global" "RM2.Global" "RM1.Global")
+
+(sdedr:define-refeval-window "RM1.UP" "Rectangle"
+  (position 0     0       0)
+  (position Wtot (* 2 TPb) 0))
+(sdedr:define-refinement-size "RM2.UP"
+  1 1 0.04 0.04)
+(sdedr:define-refinement-function "RM2.UP"
+  "DopingConcentration" "MaxTransDiff" 1.0)
+(sdedr:define-refinement-placement
+  "RM3.UP" "RM2.UP" "RM1.UP")
+
+(sdedr:define-refeval-window "RM1.Channel" "Rectangle"
+  (position (- x 2.5) 0 0)
+  (position (+ x 2.5) (+ Length 2.5) 0))
+(sdedr:define-refinement-size "RM2.Channel"
+  0.35 0.35 0.05 0.05)
+(sdedr:define-refinement-function "RM2.Channel"
+  "DopingConcentration" "MaxTransDiff" 1.0)
+(sdedr:define-refinement-placement
+  "RM3.Channel" "RM2.Channel" "RM1.Channel")
+
+(sdedr:define-refeval-window "RM1.Track" "Rectangle"
+  (position (- x 0.2) 0 0)
+  (position (+ x 0.2) (+ Length 0.2) 0))
+(sdedr:define-refinement-size "RM2.Track"
+  0.049 0.049 0.03 0.03)
+(sdedr:define-refinement-function "RM2.Track"
+  "DopingConcentration" "MaxTransDiff" 1.0)
+(sdedr:define-refinement-placement
+  "RM3.Track" "RM2.Track" "RM1.Track")
+
+(sde:build-mesh "n@node@_msh")

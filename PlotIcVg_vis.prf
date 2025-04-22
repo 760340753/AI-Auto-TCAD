@@ -1,0 +1,2 @@
+set WB_tool(svisual,exec_mode) batch
+set WB_tool(svisual,parallel,activate) 1

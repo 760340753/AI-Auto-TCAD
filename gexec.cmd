@@ -1,0 +1,98 @@
+# project name
+name FS_IGBT
+# execution graph
+job 453 -d "450"  -post { extract_vars "$nodedir" n453_des.out 453 }  -o n453_des "sdevice pp453_des.cmd"
+job 452 -d "450"  -post { extract_vars "$nodedir" n452_des.out 452 }  -o n452_des "sdevice pp452_des.cmd"
+job 451 -d "450"  -post { extract_vars "$nodedir" n451_des.out 451 }  -o n451_des "sdevice pp451_des.cmd"
+job 450   -post { extract_vars "$nodedir" n450_dvs.out 450 }  -o n450_dvs "sde -e -l n450_dvs.cmd"
+job 66   -post { extract_vars "$nodedir" n66_dvs.out 66 }  -o n66_dvs "sde -e -l n66_dvs.cmd"
+job 67 -d "66"  -post { extract_vars "$nodedir" n67_des.out 67 }  -o n67_des "sdevice pp67_des.cmd"
+job 68 -d "66"  -post { extract_vars "$nodedir" n68_des.out 68 }  -o n68_des "sdevice pp68_des.cmd"
+job 69 -d "66"  -post { extract_vars "$nodedir" n69_des.out 69 }  -o n69_des "sdevice pp69_des.cmd"
+job 375   -post { extract_vars "$nodedir" n375_dvs.out 375 }  -o n375_dvs "sde -e -l n375_dvs.cmd"
+job 376 -d "375"  -post { extract_vars "$nodedir" n376_des.out 376 }  -o n376_des "sdevice pp376_des.cmd"
+job 377 -d "375"  -post { extract_vars "$nodedir" n377_des.out 377 }  -o n377_des "sdevice pp377_des.cmd"
+job 378 -d "375"  -post { extract_vars "$nodedir" n378_des.out 378 }  -o n378_des "sdevice pp378_des.cmd"
+job 95   -post { extract_vars "$nodedir" n95_dvs.out 95 }  -o n95_dvs "sde -e -l n95_dvs.cmd"
+job 96 -d "95"  -post { extract_vars "$nodedir" n96_des.out 96 }  -o n96_des "sdevice pp96_des.cmd"
+job 97 -d "95"  -post { extract_vars "$nodedir" n97_des.out 97 }  -o n97_des "sdevice pp97_des.cmd"
+job 98 -d "95"  -post { extract_vars "$nodedir" n98_des.out 98 }  -o n98_des "sdevice pp98_des.cmd"
+job 222   -post { extract_vars "$nodedir" n222_dvs.out 222 }  -o n222_dvs "sde -e -l n222_dvs.cmd"
+job 223 -d "222"  -post { extract_vars "$nodedir" n223_des.out 223 }  -o n223_des "sdevice pp223_des.cmd"
+job 224 -d "222"  -post { extract_vars "$nodedir" n224_des.out 224 }  -o n224_des "sdevice pp224_des.cmd"
+job 225 -d "222"  -post { extract_vars "$nodedir" n225_des.out 225 }  -o n225_des "sdevice pp225_des.cmd"
+job 135   -post { extract_vars "$nodedir" n135_dvs.out 135 }  -o n135_dvs "sde -e -l n135_dvs.cmd"
+job 136 -d "135"  -post { extract_vars "$nodedir" n136_des.out 136 }  -o n136_des "sdevice pp136_des.cmd"
+job 137 -d "135"  -post { extract_vars "$nodedir" n137_des.out 137 }  -o n137_des "sdevice pp137_des.cmd"
+job 138 -d "135"  -post { extract_vars "$nodedir" n138_des.out 138 }  -o n138_des "sdevice pp138_des.cmd"
+job 397   -post { extract_vars "$nodedir" n397_dvs.out 397 }  -o n397_dvs "sde -e -l n397_dvs.cmd"
+job 398 -d "397"  -post { extract_vars "$nodedir" n398_des.out 398 }  -o n398_des "sdevice pp398_des.cmd"
+job 399 -d "397"  -post { extract_vars "$nodedir" n399_des.out 399 }  -o n399_des "sdevice pp399_des.cmd"
+job 400 -d "397"  -post { extract_vars "$nodedir" n400_des.out 400 }  -o n400_des "sdevice pp400_des.cmd"
+job 118   -post { extract_vars "$nodedir" n118_dvs.out 118 }  -o n118_dvs "sde -e -l n118_dvs.cmd"
+job 119 -d "118"  -post { extract_vars "$nodedir" n119_des.out 119 }  -o n119_des "sdevice pp119_des.cmd"
+job 120 -d "118"  -post { extract_vars "$nodedir" n120_des.out 120 }  -o n120_des "sdevice pp120_des.cmd"
+job 121 -d "118"  -post { extract_vars "$nodedir" n121_des.out 121 }  -o n121_des "sdevice pp121_des.cmd"
+job 239   -post { extract_vars "$nodedir" n239_dvs.out 239 }  -o n239_dvs "sde -e -l n239_dvs.cmd"
+job 240 -d "239"  -post { extract_vars "$nodedir" n240_des.out 240 }  -o n240_des "sdevice pp240_des.cmd"
+job 241 -d "239"  -post { extract_vars "$nodedir" n241_des.out 241 }  -o n241_des "sdevice pp241_des.cmd"
+job 242 -d "239"  -post { extract_vars "$nodedir" n242_des.out 242 }  -o n242_des "sdevice pp242_des.cmd"
+job 180   -post { extract_vars "$nodedir" n180_dvs.out 180 }  -o n180_dvs "sde -e -l n180_dvs.cmd"
+job 181 -d "180"  -post { extract_vars "$nodedir" n181_des.out 181 }  -o n181_des "sdevice pp181_des.cmd"
+job 182 -d "180"  -post { extract_vars "$nodedir" n182_des.out 182 }  -o n182_des "sdevice pp182_des.cmd"
+job 183 -d "180"  -post { extract_vars "$nodedir" n183_des.out 183 }  -o n183_des "sdevice pp183_des.cmd"
+job 414   -post { extract_vars "$nodedir" n414_dvs.out 414 }  -o n414_dvs "sde -e -l n414_dvs.cmd"
+job 415 -d "414"  -post { extract_vars "$nodedir" n415_des.out 415 }  -o n415_des "sdevice pp415_des.cmd"
+job 416 -d "414"  -post { extract_vars "$nodedir" n416_des.out 416 }  -o n416_des "sdevice pp416_des.cmd"
+job 417 -d "414"  -post { extract_vars "$nodedir" n417_des.out 417 }  -o n417_des "sdevice pp417_des.cmd"
+job 428   -post { extract_vars "$nodedir" n428_dvs.out 428 }  -o n428_dvs "sde -e -l n428_dvs.cmd"
+job 429 -d "428"  -post { extract_vars "$nodedir" n429_des.out 429 }  -o n429_des "sdevice pp429_des.cmd"
+job 430 -d "428"  -post { extract_vars "$nodedir" n430_des.out 430 }  -o n430_des "sdevice pp430_des.cmd"
+job 431 -d "428"  -post { extract_vars "$nodedir" n431_des.out 431 }  -o n431_des "sdevice pp431_des.cmd"
+job 307   -post { extract_vars "$nodedir" n307_dvs.out 307 }  -o n307_dvs "sde -e -l n307_dvs.cmd"
+job 308 -d "307"  -post { extract_vars "$nodedir" n308_des.out 308 }  -o n308_des "sdevice pp308_des.cmd"
+job 309 -d "307"  -post { extract_vars "$nodedir" n309_des.out 309 }  -o n309_des "sdevice pp309_des.cmd"
+job 310 -d "307"  -post { extract_vars "$nodedir" n310_des.out 310 }  -o n310_des "sdevice pp310_des.cmd"
+job 158   -post { extract_vars "$nodedir" n158_dvs.out 158 }  -o n158_dvs "sde -e -l n158_dvs.cmd"
+job 159 -d "158"  -post { extract_vars "$nodedir" n159_des.out 159 }  -o n159_des "sdevice pp159_des.cmd"
+job 160 -d "158"  -post { extract_vars "$nodedir" n160_des.out 160 }  -o n160_des "sdevice pp160_des.cmd"
+job 161 -d "158"  -post { extract_vars "$nodedir" n161_des.out 161 }  -o n161_des "sdevice pp161_des.cmd"
+job 208   -post { extract_vars "$nodedir" n208_dvs.out 208 }  -o n208_dvs "sde -e -l n208_dvs.cmd"
+job 209 -d "208"  -post { extract_vars "$nodedir" n209_des.out 209 }  -o n209_des "sdevice pp209_des.cmd"
+job 210 -d "208"  -post { extract_vars "$nodedir" n210_des.out 210 }  -o n210_des "sdevice pp210_des.cmd"
+job 211 -d "208"  -post { extract_vars "$nodedir" n211_des.out 211 }  -o n211_des "sdevice pp211_des.cmd"
+job 262   -post { extract_vars "$nodedir" n262_dvs.out 262 }  -o n262_dvs "sde -e -l n262_dvs.cmd"
+job 263 -d "262"  -post { extract_vars "$nodedir" n263_des.out 263 }  -o n263_des "sdevice pp263_des.cmd"
+job 264 -d "262"  -post { extract_vars "$nodedir" n264_des.out 264 }  -o n264_des "sdevice pp264_des.cmd"
+job 265 -d "262"  -post { extract_vars "$nodedir" n265_des.out 265 }  -o n265_des "sdevice pp265_des.cmd"
+job 285   -post { extract_vars "$nodedir" n285_dvs.out 285 }  -o n285_dvs "sde -e -l n285_dvs.cmd"
+job 286 -d "285"  -post { extract_vars "$nodedir" n286_des.out 286 }  -o n286_des "sdevice pp286_des.cmd"
+job 287 -d "285"  -post { extract_vars "$nodedir" n287_des.out 287 }  -o n287_des "sdevice pp287_des.cmd"
+job 288 -d "285"  -post { extract_vars "$nodedir" n288_des.out 288 }  -o n288_des "sdevice pp288_des.cmd"
+job 324   -post { extract_vars "$nodedir" n324_dvs.out 324 }  -o n324_dvs "sde -e -l n324_dvs.cmd"
+job 325 -d "324"  -post { extract_vars "$nodedir" n325_des.out 325 }  -o n325_des "sdevice pp325_des.cmd"
+job 326 -d "324"  -post { extract_vars "$nodedir" n326_des.out 326 }  -o n326_des "sdevice pp326_des.cmd"
+job 327 -d "324"  -post { extract_vars "$nodedir" n327_des.out 327 }  -o n327_des "sdevice pp327_des.cmd"
+job 347   -post { extract_vars "$nodedir" n347_dvs.out 347 }  -o n347_dvs "sde -e -l n347_dvs.cmd"
+job 348 -d "347"  -post { extract_vars "$nodedir" n348_des.out 348 }  -o n348_des "sdevice pp348_des.cmd"
+job 349 -d "347"  -post { extract_vars "$nodedir" n349_des.out 349 }  -o n349_des "sdevice pp349_des.cmd"
+job 350 -d "347"  -post { extract_vars "$nodedir" n350_des.out 350 }  -o n350_des "sdevice pp350_des.cmd"
+job 370   -post { extract_vars "$nodedir" n370_dvs.out 370 }  -o n370_dvs "sde -e -l n370_dvs.cmd"
+job 371 -d "370"  -post { extract_vars "$nodedir" n371_des.out 371 }  -o n371_des "sdevice pp371_des.cmd"
+job 372 -d "370"  -post { extract_vars "$nodedir" n372_des.out 372 }  -o n372_des "sdevice pp372_des.cmd"
+job 373 -d "370"  -post { extract_vars "$nodedir" n373_des.out 373 }  -o n373_des "sdevice pp373_des.cmd"
+check FS_IGBT_dvs.cmd 1745250498
+check BV_des.cmd 1745251052
+check sdevice.par 1745244125
+check IcVc_des.cmd 1745251072
+check IcVg_des.cmd 1745251095
+check global_tooldb 1727362555
+check gtree.dat 1745288042
+check gtooldb.tcl 1727362545
+check ./Aluminum.par 1727362582
+check ./Oxide.par 1727362583
+check ./PolySi.par 1727362583
+# included files
+file sdevice.par included ./Aluminum.par
+file sdevice.par included ./Oxide.par
+file sdevice.par included ./PolySi.par

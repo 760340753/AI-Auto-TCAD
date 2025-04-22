@@ -1,0 +1,13 @@
+{
+  "use_fake_results": false,
+  "max_iterations": 5,
+  "parameter_variation": {
+    "enabled": true,
+    "random_seed": 42,
+    "variation_factor": 0.15
+  },
+  "performance_target": {
+    "VST": 700
+  },
+  "skip_confirmation": true
+}

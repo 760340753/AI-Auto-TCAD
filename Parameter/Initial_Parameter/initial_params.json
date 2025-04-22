@@ -1,0 +1,22 @@
+{
+  "Xmax": 6,
+  "Wgate": 1.8,
+  "Wnplus": 0.5,
+  "Wpplus": 1.5,
+  "Wemitter": 1.8,
+  "Ymax": 100,
+  "Ygate": 5,
+  "Ypplus": 0.5,
+  "Ynplus": 0.5,
+  "Ypbase": 3,
+  "Hnbuffer": 4,
+  "Hcollector": 0.5,
+  "Ndrift": 5e13,
+  "Pbase": 2.5e17,
+  "Pplus": 1e19,
+  "Nplus": 1e19,
+  "Nbuffer": 5e15,
+  "Pcollector": 1e17,
+  "Tox_sidewall": 0.1,
+  "Tox_bottom": 0.12
+} 

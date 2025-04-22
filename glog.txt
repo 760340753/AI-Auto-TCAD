@@ -1,0 +1,115 @@
+
+****************************************************************************
+***                       Sentaurus Workbench gsub                       ***
+***                          Version V-2024.03                           ***
+***                      (3.8727837, x86_64, Linux)                      ***
+***                                                                      ***
+***                Copyright (c) 1994-2024 Synopsys, Inc.                ***
+***                                                                      ***
+***  This software and the associated documentation are confidential     ***
+***  and proprietary to Synopsys, Inc.  Your use or disclosure of this   ***
+***  software is subject to the terms and conditions of a written        ***
+***  license agreement between you, or your company, and Synopsys, Inc.  ***
+****************************************************************************
+
+gsub is running on host 'sentaurus' by user 'tcad'
+Binary '/usr/synopsys/sentaurus/V-2024.03/tcad/V-2024.03/linux64/bin/../lib/gsub0'
+Command line options '-verbose -swb_pid 79173 -q local:default -e 25 /home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT'
+Current directory '/home/tcad'
+Project organization 'Traditional'
+Some relevant environment variables:
+	STROOT=/usr/synopsys/sentaurus/V-2024.03
+	STRELEASE=V-2024.03
+	STROOT_LIB=/usr/synopsys/sentaurus/V-2024.03/tcad/V-2024.03/lib
+	STDB=/home/tcad/STDB
+	DATEX=/usr/synopsys/sentaurus/V-2024.03/tcad/V-2024.03/lib/datexcodes.txt
+	DISPLAY=:0.0
+
+Starting swblm daemon...OK
+Project '/home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT'
+Application mode : traditional
+Loading project tool database '/home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/gtooldb.tcl'
+12:00:01 Apr 21 2025 <FS_RC_IGBT> submitted to the batch system
+Loading global queue configuration file '/usr/synopsys/sentaurus/V-2024.03/queues/gqueues.dat'...ok
+Loading project tree '/home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/gtree.dat'
+>>>>> Preprocessing the project to run in normal mode
+Loading jobs and dependence graph '"/home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/gexec.cmd"'
+INITIALIZING PREPROCESSOR:
+Loading project tree '/home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/gtree.dat'
+Loading project variables '/home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/gvars.dat'
+--Get files to preprocess...
+--Create file handlers...
+--Read the toolflow...
+--Analyze tool-file dependencies...
+--Read all nodes to preprocess...
+--Group nodes into experiments...
+--Get all variables...
+--Get all parameters...
+PREPROCESSOR SUCCESSFULLY INITIALIZED.
+PREPROCESSING STEP 1:
+Reading file /home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/FS_IGBT_dvs.cmd
+Reading file /home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/BV_des.cmd
+Reading file /home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/sdevice.par
+Reading file /home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/IcVc_des.cmd
+Reading file /home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/IdVg_des.cmd
+PREPROCESSING STEP 2:
+---------------------------------------
+Preprocessing file /home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/IdVg_des.cmd for node 25
+'@tdr@' creates dependences with the node(s) '34'
+---------------------------------------
+Preprocessing file /home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/sdevice.par for node 25
++++Node successfully preprocessed+++
+The node '25' has dependencies to the node(s) '34'
+Writing 'gexec.cmd'
+Loading jobs and dependence graph '"/home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/gexec.cmd"'
+>>>>>>>>>> job '25' status changed from 'none' to 'queued'
+-----------------------------------------------------------------
+queue "local:default" - 25
+-----------------------------------------------------------------
+>>>>>>>>>> Initializing back-end schedulers...
+>>>>>>>> Loaded Schedulers are ... local
+local% initialize 'local' scheduler data
+>>>>> List of Active Schedulers : local
+<<<<<<<<<<
+>>>>>>>>>> job '25' status changed from 'queued' to 'ready'
+INITIALIZING PREPROCESSOR:
+Loading project tree '/home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/gtree.dat'
+Loading jobs and dependence graph '"/home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/gexec.cmd"'
+Loading project variables '/home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/gvars.dat'
+--Get files to preprocess...
+--Create file handlers...
+--Read the toolflow...
+--Analyze tool-file dependencies...
+--Read all nodes to preprocess...
+--Group nodes into experiments...
+--Get all variables...
+--Get all parameters...
+PREPROCESSOR SUCCESSFULLY INITIALIZED.
+PREPROCESSING STEP 1:
+Reading file /home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/IdVg_des.cmd
+Reading file /home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/sdevice.par
+PREPROCESSING STEP 2:
+---------------------------------------
+Preprocessing file /home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/IdVg_des.cmd for node 25
+'@tdr@' creates dependences with the node(s) '34'
++++Preprocessing results written to /home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/pp25_des.cmd
+The node '25' has dependencies to the node(s) '34'
+---------------------------------------
+Preprocessing file /home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/sdevice.par for node 25
++++Preprocessing results written to /home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/pp25_des.par
+The node '25' has dependencies to the node(s) '34'
+>>>>>>>>>> os_rm /home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT/n25_des.job
+local% submit job 25 for local execution
+>>>>>>>>>> job '25' status changed from 'ready' to 'pending'
+local% exec /usr/synopsys/sentaurus/V-2024.03/bin/gjob -verbose -nice 19 --max_threads 8  -job 25 -swb_pid 79173 -gsub_pid 94265 -gsub_host sentaurus -gsub_port 45602  "/home/tcad/STDB/MyProjects/AI_Lab/FS_RC_IGBT"
+>>>>>>>>>> job '25' status changed from 'pending' to 'running'
+12:00:03 Apr 21 2025     job 25 <sdevice> started on host 'sentaurus': "sdevice --max_threads 8  --xml pp25_des.cmd"
+>>>>>>>>>> job '25' status changed from 'running' to 'done'
+12:00:32 Apr 21 2025 +++ job 25 <sdevice> done: exit(0)
+
+SCHEDULING REPORT
++++ done     : 25
+
+12:00:34 Apr 21 2025 <FS_RC_IGBT> done (33 sec)
+>>>>>> Writing to status file 33
+gsub exits with status 0

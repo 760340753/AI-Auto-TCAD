@@ -1,0 +1,58 @@
+
+****************************************************************************
+***                       Sentaurus Workbench gjob                       ***
+***                          Version V-2024.03                           ***
+***                      (3.8727837, x86_64, Linux)                      ***
+***                                                                      ***
+***                Copyright (c) 1994-2024 Synopsys, Inc.                ***
+***                                                                      ***
+***  This software and the associated documentation are confidential     ***
+***  and proprietary to Synopsys, Inc.  Your use or disclosure of this   ***
+***  software is subject to the terms and conditions of a written        ***
+***  license agreement between you, or your company, and Synopsys, Inc.  ***
+****************************************************************************
+
+gjob is running on host 'sentaurus' by user 'tcad'
+Binary '/usr/synopsys/sentaurus/V-2024.03/tcad/V-2024.03/linux64/bin/gjob'
+Command line options '-verbose -nice 19 -job 402 -swb_pid 0 -gsub_pid 42269 -gsub_host sentaurus -gsub_port 45280 /home/tcad/STDB/MyProjects/AI_Lab/FS_IGBT'
+Current directory '/home/tcad/STDB/MyProjects/AI_Lab/FS_IGBT'
+Project organization 'Traditional'
+Some relevant environment variables:
+	STROOT=/usr/synopsys/sentaurus/V-2024.03
+	STRELEASE=V-2024.03
+	STROOT_LIB=/usr/synopsys/sentaurus/V-2024.03/tcad/V-2024.03/lib
+	STDB=/home/tcad/STDB
+	DATEX=/usr/synopsys/sentaurus/V-2024.03/tcad/V-2024.03/lib/datexcodes.txt
+	DISPLAY=:0.0
+
+Project '/home/tcad/STDB/MyProjects/AI_Lab/FS_IGBT'
+INITIALIZING PREPROCESSOR:
+Application mode : traditional
+Loading project tool database '/home/tcad/STDB/MyProjects/AI_Lab/FS_IGBT/gtooldb.tcl'
+Loading project tree '/home/tcad/STDB/MyProjects/AI_Lab/FS_IGBT/gtree.dat'
+Loading jobs and dependence graph '"/home/tcad/STDB/MyProjects/AI_Lab/FS_IGBT/gexec.cmd"'
+Loading project variables '/home/tcad/STDB/MyProjects/AI_Lab/FS_IGBT/gvars.dat'
+--Get files to preprocess...
+--Create file handlers...
+--Read the toolflow...
+--Analyze tool-file dependencies...
+--Read all nodes to preprocess...
+--Group nodes into experiments...
+--Get all variables...
+--Get all parameters...
+PREPROCESSOR SUCCESSFULLY INITIALIZED.
+PREPROCESSING STEP 1:
+Reading file /home/tcad/STDB/MyProjects/AI_Lab/FS_IGBT/FS_IGBT_dvs.cmd
+PREPROCESSING STEP 2:
+---------------------------------------
+Preprocessing file /home/tcad/STDB/MyProjects/AI_Lab/FS_IGBT/FS_IGBT_dvs.cmd for node 402
++++Preprocessing results written to /home/tcad/STDB/MyProjects/AI_Lab/FS_IGBT/pp402_dvs.cmd
+Start Simulation section
+21:59:02 Apr 21 2025     job 402 <sde> started on host 'sentaurus': "sde -e -l n402_dvs.cmd"
+21:59:05 Apr 21 2025 +++ job 402 <sde> done: exit(0)
+End Simulation section
+Start Epilogue section
+21:59:05 Apr 21 2025 *** job 402 pre/post execution: eval " gjob::find_extracted_vars "/home/tcad/STDB/MyProjects/AI_Lab/FS_IGBT" n402_dvs.out 402 "
+End Epilogue section
+Job succeeded
+gjob exits with status 0

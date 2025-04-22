@@ -1,0 +1,156 @@
+File {
+   * input files:
+   Grid      =   "@tdr@"
+   Parameter =   "@parameter@"
+   * output files:
+   Plot      =   "@tdrdat@"
+   Current   =   "@plot@"
+   Output    =   "@log@"
+}
+
+Electrode {
+   { Name="Anode"    Voltage= 0.0 }
+   { Name="Cathode"  Voltage= 0.0 }
+   { Name="Gate"     Voltage= 0.0 }
+}
+
+
+Thermode{
+{Name="Anode" Temperature=300 SurfaceResistance=1e-3}
+{Name="Cathode" Temperature=300 SurfaceResistance=1e-3}
+{Name="Gate" Temperature=300 SurfaceResistance=1e-3}
+}
+
+
+Physics{
+   #Areafactor = @<2.5e6/Wtot>@
+   EffectiveIntrinsicDensity( OldSlotboom )     
+   	HeavyIon(
+		# angel 0-180 
+		Direction = (@<cos(angle/180.0*3.1415926)>@,@<sin(angle/180.0*3.1415926)>@) # (vx vy) vector 
+		Location = (@x@,0) #(x0 y0)
+		Time = 1.0e-10 #1e-10s = 0.1ns
+
+
+		Length = @Length@ #100 	#[1e-5 5e-5 2e-4 5e-4 1e-3 1e-2]   	# unit ??? [PicCoulomb um] [None: cm]
+
+
+		Wt_hi  = 0.05 #0.05 #5	#[5e-6 2e-5 5e-5 5e-5 2e-5 1e-6]   	# unit ??? [PicCoulomb um] [None: cm]
+
+		
+		LET_f =  0.03 #0.01 		#[1 1 1 1 1 1] 						#unit [PicCoulomb pC/um] [None: Pairs/cm3]
+
+		Gaussian # lateral distribution
+		PicoCoulomb	# determine the unit above
+		)
+	
+	Thermodynamic
+	AnalyticTEP
+	
+}
+
+Physics(Material="Silicon"){
+   Mobility(
+      PhuMob
+      HighFieldSaturation
+      Enormal*(IALMob (AutoOrientation))
+   )
+   Recombination(
+      SRH( DopingDependence 
+      TempDep ElectricField)
+      Auger
+      Avalanche(Lackner BandgapDependence)
+   )           
+}
+
+Math { 
+   Method=ILS
+   Extrapolate
+   Iterations= 20
+   ExitOnFailure
+   number_of_threads = 8
+   
+   BreakCriteria 
+   {Temperature (Maxval=1000) } #stop running when Temp >= 1000
+}
+
+Plot{
+
+   HeavyIonCharge HeavyIonChargeDensity HeavyIonGeneration
+
+   eLifeTime hLifeTime
+
+  *- Carrier Densities:
+  eDensity hDensity
+  *- Currents and current components:
+  Current/Vector eCurrent/Vector hCurrent/Vector
+  eMobility hMobility
+  eVelocity hVelocity
+  *- Fields, Potentials and Charge distributions
+  ElectricField/Vector
+  Potential
+  eQuasiFermi hQuasiFermi
+  SpaceCharge
+  *- Temperatures
+  LatticeTemperature
+  eTemperature hTemperature
+  *- Generation/Recombination
+  SRHRecombination Band2BandGeneration AugerRecombination RadiativeRecombination
+  AvalancheGeneration eAvalancheGeneration hAvalancheGeneration
+  TotalRecombination
+  eLifeTime hLifeTime
+  SurfaceRecombination
+  *- Doping Profiles
+  Doping 
+  DonorConcentration AcceptorConcentration
+  *- Band structure
+  BandGap 
+  BandGapNarrowing
+  ElectronAffinity
+  ConductionBandEnergy ValenceBand
+  eQuantumPotential hQuantumPotential
+}
+
+Solve{
+
+   Poisson
+   Coupled { Poisson Electron }
+   Coupled { Poisson Electron Hole }
+   Coupled { Poisson Electron Hole Temperature }
+
+	Quasistationary( 
+	 maxstep= 0.5 minstep= 1e-10
+	 increment= 1.5 decrement= 2.0
+	 initialstep= 1e-4
+	Goal{Name= "Gate"  Voltage= 0}
+	Goal{Name= "Anode" Voltage= @Vanode@ }
+	){ Coupled{ Poisson Electron Hole }}
+
+#Save(FilePrefix="VQ_ n@node@") 
+#Load(FilePrefix="VQ_ n@node@")
+
+	  NewCurrentFile = "FS_HeavyIon_"
+	  Transient (
+		InitialTime= 0 FinalTime= 3e-7 #4e-6 #2.5e-8 #3e-8 #1e-8
+		InitialStep= 1e-11 #1e-12 
+		Increment= 1.41
+		Minstep= 3e-20
+		MaxStep= 2e-7 #4e-8
+	  )
+	  {	Coupled 
+	  	  	{ Poisson Electron Hole Temperature}
+	  	Plot(FilePrefix="SEE_Stage_@node@_One" 			Time=(0) NoOverWrite) 
+	  	Plot(FilePrefix="SEE_Stage_@node@_Channel_" 	Time=(Range=(0 1.1e-10) Intervals=8) NoOverWrite)
+	  	#Plot(FilePrefix="SEE_Stage_@node@_Two_A_" 		Time=(1e-10) NoOverWrite) 
+	  	#Plot(FilePrefix="SEE_Stage_@node@_Two_B_" 		Time=(1.5e-10) NoOverWrite) 
+	  	#Plot(FilePrefix="SEE_Stage_@node@_Two_C_" 		Time=(2e-10) NoOverWrite) 
+	  	Plot(FilePrefix="SEE_Stage_@node@_Two_Overall_" Time=(Range=(1e-10 2e-10) Intervals=8) NoOverWrite)
+	  	#Plot(FilePrefix="SEE_Stage_@node@_Three_" 		Time=(Range=(2e-10 1e-8) Intervals=8) NoOverWrite) 
+	  	#Plot(FilePrefix="SEE_Stage_@node@_Four_" 		Time=(Range=(1e-8 2.5e-8) Intervals=8) NoOverWrite)
+	  	#Plot(FilePrefix="SEE_Stage_@node@_Five_" 		Time=(Range=(2.5e-8 4e-6) Intervals=8) NoOverWrite)
+	  	Plot(FilePrefix="SEE_Stage_@node@_ALL_" 		Time=(Range=(0 4e-6) Intervals=8) NoOverWrite)
+#Plot(FilePrefix="SimpleSEE_@node@" Time=(Range=(1e-12 3e-7) Intervals=12) NoOverWrite)
+	  }
+}
+#	  {	Coupled 
+#	  (linesearchdamping = 1e-4  iterations=100) 

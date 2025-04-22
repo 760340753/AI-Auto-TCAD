@@ -1,0 +1,167 @@
+## Input and Output Files
+File {
+	grid      = "@tdr@"
+	current   = "@plot@"
+	output    = "@log@"
+	plot      = "@tdrdat@"
+	parameter = "@parameter@"
+}
+
+
+
+Electrode {
+   { name= "Anode"           Voltage= 0.0 }
+   { name= "Cathode"         Voltage= 0.0 }
+   { name= "Gate"            Voltage= 0.0 } 
+}
+
+Thermode{
+{Name="Anode" Temperature=300 SurfaceResistance=1e-3}
+{Name="Cathode" Temperature=300 SurfaceResistance=1e-3}
+{Name="Gate" Temperature=300 SurfaceResistance=1e-3}
+}
+
+## Physics models
+Physics {
+   #Fermi
+   #AreaFactor  = @<2.5e7/Wtot>@ 
+   #Temperature = 300
+   #Thermodynamic
+   #AnalyticTEP
+    AreaFactor  = @<2.5e6/Wtot>@ 
+    EffectiveIntrinsicDensity(BandGapNarrowing (Slotboom))
+   	Thermodynamic
+	AnalyticTEP
+}
+
+Physics(Material="Silicon"){
+  Mobility ( 
+      PhuMob
+      #DopingDep
+	  Enormal
+	  HighFieldSaturation
+   )
+   Recombination (
+      SRH( DopingDependence 
+      TempDep ElectricField)
+      Auger
+      Avalanche(Lackner BandgapDependence)
+   )
+
+}
+
+
+Plot {
+  *- Carrier Densities:
+  eDensity hDensity
+  # EffectiveIntrinsicDensity IntrinsicDensity
+  # eEquilibriumDensity hEquilibriumDensity
+  *- Currents and current components:
+  Current/Vector eCurrent/Vector hCurrent/Vector
+  # ConductionCurrent/Vector DisplacementCurrent/Vector
+  eMobility hMobility
+  eVelocity hVelocity
+  *- Fields, Potentials and Charge distributions
+  ElectricField/Vector
+  Potential
+  eQuasiFermi hQuasiFermi
+  SpaceCharge
+  *- Driving forces
+  eGradQuasiFermi/Vector hGradQuasiFermi/Vector
+  eEparallel hEparallel 
+  eENormal hENormal
+  # eEffectiveField hEffectiveField
+  *- Temperatures
+  LatticeTemperature
+  eTemperature hTemperature
+  *- Generation/Recombination
+  SRHRecombination Band2BandGeneration AugerRecombination RadiativeRecombination
+  AvalancheGeneration eAvalancheGeneration hAvalancheGeneration
+  TotalRecombination
+  eLifeTime hLifeTime
+  SurfaceRecombination
+  # CDL CDL1 CDL2 CDL3
+  # eCDL1lifetime eCDL2lifetime hCDL1lifetime hCDL2lifetime
+  # SurfaceMultRecombination
+  *- Doping Profiles
+  Doping 
+  DonorConcentration AcceptorConcentration
+  # AntimonyConcentration ArsenicConcentration BoronConcentration 
+  # IndiumConcentration NitrogenConcentration PhosphorusConcentration
+  # NDopantConcentration PDopantConcentration
+  *- Incomplete ionization
+  # AsPlus PhPlus SbPlus NitrogenPlus
+  # BMinus InMinus 
+  # NDopantPlus PDopantMinus 
+
+  *- Band structure
+  BandGap 
+  BandGapNarrowing
+  ElectronAffinity
+  ConductionBandEnergy ValenceBand
+  eQuantumPotential hQuantumPotential
+  *- Composition
+  # xMoleFraction yMoleFraction
+  *- Traps
+  # eTrappedCharge hTrappedCharge
+  # eGapStatesRecombination hGapStatesRecombination
+  *- Optical Generation
+  # ComplexRefractiveIndex AbsorbedPhotonDensity OpticalGeneration
+  # OpticalAbsorptionHeat QuantumYield
+  *- Generation due to Ion Strikes
+  # AlphaCharge HeavyIonChargeDensity
+  *- Gate Tunneling/Hot carrier injection
+  # FowlerNordheim 
+  # HotElectronInjection HotHoleInjection
+  *- Tunneling
+  # BarrierTunneling eBarrierTunneling hBarrierTunneling
+  # eDirectTunnelCurrent hDirectTunnelCurrent
+  *- Ionization Integrals
+  # MeanIonIntegral eIonIntegral hIonIntegral 
+  *- Heat flow
+  # TotalHeat eJouleHeat hJouleHeat
+  # PeltierHeat ThomsonHeat RecombinationHeat
+  # ThermalConductivity 
+  *- Stress-Tensor
+  # Stressxx Stressxy Stressxz Stressyy Stressyz Stresszz
+  *- Ferro-electrical Polarization
+  # Polarization/Vector
+  *- Piezo
+  # PiezoCharge ConversePiezoelectricField
+  # ConversePiezoelectricFieldXX ConversePiezoelectricFieldXY ConversePiezoelectricFieldXZ
+  # ConversePiezoelectricFieldYY ConversePiezoelectricFieldYZ ConversePiezoelectricFieldZZ
+
+}
+
+Math  {
+                   Avalderivatives
+                   Iterations = 20
+                   ExitOnFailure
+                   Notdamped = 100
+                   RelErrControl
+                   BreakCriteria{ Current (Contact = "Anode" AbsVal = 200)}
+                   CNormPrint
+                   Number_Of_Threads= 5   
+}
+
+
+Solve {
+   Poisson
+   Coupled { Poisson Electron }
+   Coupled { Poisson Electron Hole }	
+  
+   Quasistationary (
+      InitialStep= 1e-4 Increment= 1.5 Decrement= 2
+      MinStep= 1e-10 MaxStep= 0.5
+      Goal { Name= Gate Value=20}
+   ){ Coupled { Poisson Electron Hole } }
+   
+   NewCurrentPrefix="IdVd_"
+   Continuation (
+   	    Name = "Anode"
+      InitialVStep= 1e-4
+      MinVoltage=0 MaxVoltage=50
+      MinCurrent=0 MaxCurrent=200
+      Iadapt=1e-10
+   ){ Coupled { Poisson Electron Hole } }
+}

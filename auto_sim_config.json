@@ -1,0 +1,20 @@
+{
+  "use_fake_results": false,
+  "max_iterations": 10,
+  "parameter_variation": {
+    "enabled": false,
+    "random_seed": 42,
+    "variation_rate": 0.1
+  },
+  "performance_target": {
+    "voltage": 700,
+    "current": 100
+  },
+  "skip_confirmation": true,
+  "api_key": "sk-buspthftjrkhcudljfardlbubjlmpfoxehgstdipajrxpccc",
+  "use_siliconflow": true,
+  "use_markdown": true,
+  "model": "Pro/deepseek-ai/DeepSeek-R1",
+  "project_path": "/home/tcad/STDB/MyProjects/AI_Lab/FS_IGBT",
+  "sdevice_tool_label": "sdevice"
+}
